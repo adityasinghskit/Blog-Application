@@ -79,68 +79,6 @@ public class PostServiceImpl implements PostService {
 		
 	}
 
-	@Override
-	public List<Comment> getAllComments(Integer pid) {
-		
-		Post p= getPostById(pid);
-		List<Comment> list= p.getComments();
-		if(list.size()>0) {
-			return list;
-		}
-		else {
-			throw new NoCommentFoundException("No comment found!");
-		}
-	}
-
-	@Override
-	public Comment getCommentById(Integer pid, Integer cid){
-		
-		List<Comment> list= getAllComments(pid);
-		for(Comment c: list) {
-			if(c.getCommentId()==cid) {
-				return c;
-			}
-		}
-		throw new NoCommentFoundException("No comment exists by id: "+cid);
-		
-		
-		
-	}
-
-	@Override
-	public Comment addComment(Integer pid, Comment c) throws CommentAreadyExistException {
-		List<Comment> list= getAllComments(pid);
-		for(Comment i: list) {
-			if(i.getCommentId()==c.getCommentId()) {
-				throw new CommentAreadyExistException("Post already exists by id: "+c.getCommentId());
-			}
-		}
-		list.add(c);
-		pDao.save(pDao.findById(pid).get());
-		return c;
-	}
-
-	@Override
-	public Comment updateComment(Integer pid, Integer cid, Comment c) throws NoCommentFoundException {
-		List<Comment> list= getAllComments(pid);
-		for(Comment i: list) {
-			if(i.getCommentId()==cid) {
-				return c;
-			}
-		}
-		throw new NoCommentFoundException("No comment exists by id: "+cid);
-	}
-
-	@Override
-	public String deleteCommentById(Integer pid, Integer cid) throws NoCommentFoundException {
-		Optional<Comment> opt= cDao.findById(cid);
-		if(opt.isPresent()) {
-			cDao.deleteById(id);
-			return "Comment deleted by id: "+id;
-		}
-		else {
-			throw new NoCommentFoundException("No comment exists by id: "+id);
-		}
-	}
+	
 
 }

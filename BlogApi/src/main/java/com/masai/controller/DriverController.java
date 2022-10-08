@@ -54,31 +54,7 @@ public class DriverController {
 		return new ResponseEntity<String>(p,HttpStatus.OK);
 	}
 	
-	@GetMapping("/posts")
-	public ResponseEntity<List<Post>> getAllPosts(){
-		List<Post> list= pService.getAllPosts();
-		return new ResponseEntity<List<Post>>(list,HttpStatus.OK);
-	}
-	@GetMapping("/posts/{id}")
-	public ResponseEntity<Post> getPostById(@PathVariable("id") Integer id){
-		Post p= pService.getPostById(id);
-		return new ResponseEntity<Post>(p,HttpStatus.OK);
-	}
-	@PostMapping("/posts")
-	public ResponseEntity<Post> addPost(@Valid @RequestBody Post p){
-		Post post= pService.addPost(p);
-		return new ResponseEntity<Post>(p,HttpStatus.CREATED);
-	}
-	@PutMapping("/posts/{id}")
-	public ResponseEntity<Post> updatePost(@PathVariable("id") Integer id
-										   ,@RequestBody Post p){
-		Post post= pService.updatePost(id, p);
-		return new ResponseEntity<Post>(p,HttpStatus.OK);
-	}
-	@DeleteMapping("/posts/{id}")
-	public ResponseEntity<String> deletePostById(@PathVariable("id") Integer id){
-		String p=pService.deletePostById(id);
-		return new ResponseEntity<String>(p,HttpStatus.OK);
-	}
+	
+
 	
 }
